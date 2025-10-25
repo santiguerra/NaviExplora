@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NaviExplora - Jardín Botánico UTP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            color: #1b5e20;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        
+        nav {
+            background-color: #4caf50;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0;
+        }
+        
+        nav ul li a {
+            display: block;
+            padding: 18px 30px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        nav ul li a:hover {
+            background-color: #388e3c;
+            border-bottom: 3px solid #1b5e20;
+            transform: translateY(-2px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .section {
+            background-color: white;
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid #4caf50;
+        }
+        
+        .section h2 {
+            color: #2e7d32;
+            margin-bottom: 25px;
+            font-size: 2em;
+            border-bottom: 3px solid #81c784;
+            padding-bottom: 10px;
+        }
+        
+        .section h3 {
+            color: #388e3c;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        /* Perfil del estudiante */
+        .perfil-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            background: linear-gradient(135deg, #f1f8e9 0%, #dcedc8 100%);
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid #aed581;
+        }
+        
+        .perfil-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #4caf50;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .perfil-info {
+            flex: 1;
+        }
+        
+        .perfil-info h3 {
+            color: #1b5e20;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        
+        .perfil-info p {
+            font-size: 1.2em;
+            color: #2e7d32;
+            margin: 8px 0;
+        }
+        
+        /* Estado del arte con formato específico */
+        .estado-arte {
+            line-height: 1.5;
+            font-size: 12pt;
+        }
+        
+        .estado-arte p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .highlight {
+            background-color: #fff59d;
+            padding: 2px 5px;
+            font-weight: bold;
+            color: #1b5e20;
+            border-radius: 3px;
+        }
+        
+        .ecuacion {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            border-radius: 5px;
+        }
+        
+        .ecuacion strong {
+            color: #2e7d32;
+        }
+        
+        ul {
+            margin: 15px 0 15px 30px;
+        }
+        
+        ul li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            display: block;
+        }
+        
+        .img-caption {
+            text-align: center;
+            font-style: italic;
+            color: #558b2f;
+            margin-top: -10px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        
+        a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s;
+        }
+        
+        a:hover {
+            border-bottom: 2px solid #4caf50;
+        }
+        
+        footer {
+            background-color: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+        
+        footer p {
+            font-size: 1.1em;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .perfil-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li a {
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+            }
+            
+            .section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>NaviExplora</h1>
+        <p>Explora el Jardín Botánico de la UTP con Tecnología NaviLens</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#perfil">Perfil del Estudiante</a></li>
+            <li><a href="#descripcion">Descripción del Tema</a></li>
+            <li><a href="#estado-arte">Estado del Arte</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <!-- SECCIÓN 1: PERFIL DEL ESTUDIANTE -->
+        <section id="perfil" class="section">
+            <h2>Perfil del Estudiante</h2>
+            <div class="perfil-container">
+                <img src="https://via.placeholder.com/200?text=Tu+Foto" alt="Foto del estudiante">
+                <div class="perfil-info">
+                    <h3>Santiago Guerra Puertas</h3>
+                    <p><strong>Programa Académico:</strong> Ingeniería de Sistemas y Computación]</p>
+                    <p><strong>Universidad:</strong> Universidad Tecnológica de Pereira</p>
+                    <p><strong>Curso:</strong> Física 1</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SECCIÓN 2: DESCRIPCIÓN DEL TEMA -->
+        <section id="descripcion" class="section">
+            <h2>Descripción del Tema</h2>
+            
+            <h3>Tema General</h3>
+            <p>Implementación de tecnología NaviLens para mejorar la accesibilidad y el recorrido autoguiado en el Jardín Botánico de la Universidad Tecnológica de Pereira (UTP), integrando principios fundamentales de Física 1 en mecánica.</p>
+            
+            <h3>Temas Particulares</h3>
+            
+            <h4 style="color: #2e7d32; margin-top: 20px;">1. Contexto y Justificación</h4>
+            <p>Actualmente, los visitantes del Jardín Botánico de la UTP utilizan un mapa fotográfico para realizar el recorrido. Sin embargo, existe una carencia de señalización numérica clara, lo que complica significativamente la navegación, especialmente para visitantes principiantes. Esta situación se puede mejorar mediante la implementación de tecnología accesible como NaviLens.</p>
+            
+            <h4 style="color: #2e7d32; margin-top: 20px;">2. Objetivo del Proyecto</h4>
+            <p>Realizar una prueba piloto de adecuación de recorrido accesible usando códigos NaviLens. Para más información: <a href="https://www.navilens.com/es/" target="_blank">NaviLens Oficial</a>.</p>
+            <p><strong>Aplicaciones disponibles:</strong></p>
+            <ul>
+                <li><a href="https://play.google.com/store/apps/details?id=com.neosistec.navilensgo&hl=es_ES" target="_blank">NaviLens GO - Google Play</a></li>
+                <li><a href="https://apps.apple.com/co/app/navilens-go/id1313878412" target="_blank">NaviLens GO - App Store</a></li>
+            </ul>
+            
+            <h4 style="color: #2e7d32; margin-top: 20px;">3. Alcance</h4>
+            <p>Proyecto piloto utilizando códigos gratuitos para centros de enseñanza (<a href="https://order.navilens.com/" target="_blank">solicitar códigos</a>) implementados específicamente en el Jardín Botánico de la UTP.</p>
+            
+            <h4 style="color: #2e7d32; margin-top: 20px;">4. Beneficiarios</h4>
+            <ul>
+                <li>Visitantes autoguiados del Jardín Botánico</li>
+                <li>Personas con discapacidad visual</li>
+                <li>Comunidad universitaria de la UTP</li>
+                <li>Público general interesado en botánica</li>
+            </ul>
+            
+            <h4 style="color: #2e7d32; margin-top: 20px;">5. Metodología</h4>
+            <ul>
+                <li>Priorización de puntos relevantes en el recorrido del jardín</li>
+                <li>Elaboración de descripciones detalladas en colaboración con el personal del jardín</li>
+                <li>Evaluación de materiales de impresión y sistemas de fijación</li>
+                <li>Realización de pruebas con visitantes reales</li>
+            </ul>
+            
+            <h4 style="color: #2e7d32; margin-top: 20px;">6. Impacto e Innovación</h4>
+            <p>Este proyecto representa el primer caso de éxito de implementación de tecnología NaviLens en un jardín botánico colombiano ubicado en terreno tipo sendero.</p>
+            
+            <h4 style="color: #2e7d32; margin-top: 20px;">7. Integración con Física 1</h4>
+            <ul>
+                <li><strong>Geometría y vectores:</strong> Manejo de ángulos de detección, vectores direccionales y trigonometría aplicada</li>
+                <li><strong>Mecánica y estática:</strong> Análisis de fuerzas, torques y equilibrio en la instalación de códigos en postes y estructuras</li>
+                <li><strong>Cinemática:</strong> Estudio del movimiento de los usuarios durante la detección de códigos</li>
+            </ul>
+        </section>
+        
+        <!-- SECCIÓN 3: ESTADO DEL ARTE -->
+        <section id="estado-arte" class="section estado-arte">
+            <h2>Estado del Arte del Tema</h2>
+            
+            <p><strong>Recopilación inicial de consultas:</strong> Se realizaron consultas en el sitio oficial de NaviLens (navilens.com), aplicaciones disponibles en tiendas digitales, sitio de pedidos de códigos, y diversos casos de estudio documentados en Instagram y sitios educativos. Las fuentes adicionales incluyen artículos científicos especializados sobre localización visual y accesibilidad, como publicaciones en PMC (PubMed Central) sobre algoritmos ligeros para visión artificial.</p>
+            
+            <h3>Subtema 1: Tecnología NaviLens</h3>
+            
+            <p>NaviLens constituye una señalética visual disruptiva que emplea marcadores de alto alcance especialmente diseñados para personas con discapacidad visual. Esta tecnología permite la detección rápida sin necesidad de enfoque preciso, funcionando a gran <span class="highlight">distancia</span> (hasta 15 metros para códigos de 26 cm de tamaño), en movimiento continuo, y con capacidad de lectura múltiple simultánea. El sistema proporciona información auditiva en 34 idiomas diferentes, corrigiendo automáticamente las distorsiones causadas por la perspectiva del observador.</p>
+            
+            <p>El funcionamiento se basa en la detección de patrones visuales únicos que pueden ser identificados por una cámara de smartphone desde grandes distancias y ángulos amplios. La tecnología utiliza algoritmos de visión por computadora que permiten el reconocimiento instantáneo incluso cuando el código no está centrado en el campo de visión.</p>
+            
+            <div class="ecuacion">
+                <strong>Ecuación de distancia de detección:</strong><br>
+                d = (f × H) / h<br><br>
+                Donde:<br>
+                • d = <span class="highlight">distancia</span> al código<br>
+                • f = distancia focal de la cámara<br>
+                • H = altura real del código<br>
+                • h = altura aparente del código en el sensor
+            </div>
+            
+            <p>Esta relación geométrica permite estimar la <span class="highlight">distancia</span> basada en el tamaño aparente del código en la imagen capturada por la cámara.</p>
+            
+            <img src="https://npr.brightspotcdn.com/b2/73/8492e0cc4efc976218897aca96f9/navilens-at-the-butterfly-garden.jpg" alt="Implementación de NaviLens en jardín botánico">
+            <p class="img-caption">Figura 1: Ejemplo de código NaviLens instalado en un jardín botánico</p>
+            
+            <h3>Subtema 2: Principios Físicos Involucrados</h3>
+            
+            <p>La tecnología de detección NaviLens cubre un <span class="highlight">ángulo</span> de hasta 160 grados, utilizando principios trigonométricos para modelar la orientación espacial. El <span class="highlight">ángulo</span> de detección θ se calcula mediante la descomposición de vectores en coordenadas bidimensionales y tridimensionales, ajustando las proyecciones con funciones trigonométricas para las componentes horizontales y verticales.</p>
+            
+            <div class="ecuacion">
+                <strong>Cálculo del ángulo de detección:</strong><br>
+                cos(θ) = componente adyacente / hipotenusa<br>
+                tan(θ) = componente opuesta / componente adyacente<br><br>
+                Para vectores:<br>
+                θ = arctan(y/x)
+            </div>
+            
+            <p>Durante el movimiento del usuario, se aplican principios de cinemática. La <span class="highlight">velocidad</span> constante se calcula como v = d / t, donde d representa el <span class="highlight">desplazamiento</span> y t el tiempo transcurrido. Esta medición permite determinar los tiempos de detección mientras el usuario camina por el sendero del jardín.</p>
+            
+            <div class="ecuacion">
+                <strong>Ecuación de velocidad:</strong><br>
+                v = Δd / Δt<br><br>
+                Donde:<br>
+                • v = <span class="highlight">velocidad</span> de desplazamiento (m/s)<br>
+                • Δd = <span class="highlight">distancia</span> recorrida (m)<br>
+                • Δt = intervalo de tiempo (s)
+            </div>
+            
+            <p>Para la instalación de los códigos en el jardín botánico, se emplean principios de estática. El análisis de <span class="highlight">torque</span> (momento de fuerza) es fundamental para garantizar la estabilidad de las estructuras que soportan los códigos, especialmente considerando factores externos como el viento.</p>
+            
+            <div class="ecuacion">
+                <strong>Ecuación de torque:</strong><br>
+                τ = F × r × sen(α)<br><br>
+                Condiciones de equilibrio estático:<br>
+                ΣF = 0 (suma de fuerzas igual a cero)<br>
+                Στ = 0 (suma de torques igual a cero)<br><br>
+                Donde:<br>
+                • τ = <span class="highlight">torque</span> o momento de fuerza (N·m)<br>
+                • F = <span class="highlight">fuerza</span> aplicada (N)<br>
+                • r = <span class="highlight">distancia</span> al punto de rotación (m)<br>
+                • α = <span class="highlight">ángulo</span> entre la fuerza y el brazo de palanca
+            </div>
+            
+            <p>En el análisis de mecánica para la instalación en senderos irregulares, se evalúan la <span class="highlight">fricción</span> estática y el <span class="highlight">peso</span> de las estructuras. La <span class="highlight">fuerza</span> de fricción estática debe ser suficiente para prevenir el deslizamiento de los postes de soporte, especialmente en terrenos con pendiente.</p>
+            
+            <div class="ecuacion">
+                <strong>Fuerza de fricción estática:</strong><br>
+                f<sub>s</sub> ≤ μ<sub>s</sub> × N<br><br>
+                <strong>Peso:</strong><br>
+                W = m × g<br><br>
+                Donde:<br>
+                • f<sub>s</sub> = <span class="highlight">fuerza</span> de fricción estática (N)<br>
+                • μ<sub>s</sub> = coeficiente de fricción estática<br>
+                • N = <span class="highlight">fuerza</span> normal (N)<br>
+                • W = <span class="highlight">peso</span> (N)<br>
+                • m = masa (kg)<br>
+                • g = <span class="highlight">aceleración</span> gravitacional (9.8 m/s²)
+            </div>
+            
+            <img src="https://www.researchgate.net/publication/337974895/figure/fig4/AS:837077470031873@1576586229834/Direction-calculation-during-marker-interconnection.png" alt="Diagrama de cálculo vectorial">
+            <p class="img-caption">Figura 2: Diagrama de cálculo de dirección y ángulos en el sistema NaviLens</p>
+            
+            <h3>Subtema 3: Casos de Estudio y Aplicaciones Similares</h3>
+            
+            <p>En España, el Jardín Botánico en miniatura ubicado en la Plaza de España de Águilas (Murcia) implementó exitosamente la tecnología NaviLens para mejorar la accesibilidad en espacios verdes urbanos. Este proyecto demostró la viabilidad de la tecnología en entornos exteriores con vegetación densa.</p>
+            
+            <p>Otro caso relevante es el Paseo Botánico de la Escuela Politécnica Superior de Orihuela (Alicante), donde se realizó una implementación completa en senderos para navegación inclusiva. Estos casos de estudio destacan especialmente la efectividad de la detección en entornos exteriores, aprovechando las capacidades de gran <span class="highlight">distancia</span> de lectura y amplio <span class="highlight">ángulo</span> de detección de la tecnología NaviLens.</p>
+            
+            <p>Los resultados de estas implementaciones muestran que la tecnología es particularmente efectiva en jardines botánicos debido a:</p>
+            <ul>
+                <li>La necesidad de información detallada sobre especies vegetales</li>
+                <li>La importancia de la accesibilidad para visitantes con discapacidad visual</li>
+                <li>Los recorridos extensos donde la <span class="highlight">distancia</span> entre puntos de interés puede ser considerable</li>
+                <li>Los senderos con curvas y cambios de dirección que requieren orientación espacial precisa</li>
+            </ul>
+            
+            <img src="https://www.navilens.com/images/places/navilens-ar-virtual-arrows-min.jpg" alt="Sistema de navegación con realidad aumentada">
+            <p class="img-caption">Figura 3: Ejemplo de detección angular y sistema de navegación mediante realidad aumentada en NaviLens</p>
+            
+            <p>Los estudios técnicos realizados en estas implementaciones han permitido optimizar parámetros como la altura de instalación de los códigos, el <span class="highlight">ángulo</span> de inclinación óptimo respecto al suelo, y la <span class="highlight">distancia</span> ideal entre marcadores consecutivos en un recorrido lineal tipo sendero.</p>
+        </section>
+    </div>
+    
+    <footer>
+        <p>Proyecto de Física 1 | Universidad Tecnológica de Pereira</p>
+        <p>Fecha de entrega: Octubre 25, 2025</p>
+    </footer>
+</body>
+</html>
