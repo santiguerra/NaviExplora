@@ -12,162 +12,401 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e9 50%, #dcedc8 100%);
             color: #1b5e20;
+            overflow-x: hidden;
         }
         
-        header {
-            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
-            color: white;
-            padding: 40px 20px;
+        /* Hero Section con parallax */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #2e7d32 0%, #43a047 50%, #66bb6a 100%);
         }
         
-        header h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(129, 199, 132, 0.3) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
         }
         
-        header p {
-            font-size: 1.1em;
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            color: white;
+            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero p {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 40px;
+            color: white;
             opacity: 0.95;
         }
         
+        .cta-button {
+            display: inline-block;
+            padding: 18px 48px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #2e7d32;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(20px); }
+        }
+        
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: white;
+            opacity: 0.9;
+        }
+        
+        /* Navigation sticky */
         nav {
-            background-color: #4caf50;
-            padding: 0;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 20px 0;
+            opacity: 0;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         nav ul {
-            list-style-type: none;
+            list-style: none;
             display: flex;
             justify-content: center;
+            gap: 40px;
             flex-wrap: wrap;
         }
         
-        nav ul li {
-            margin: 0;
+        nav ul li a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
         }
         
-        nav ul li a {
-            display: block;
-            padding: 18px 30px;
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-            transition: background-color 0.3s, transform 0.2s;
-            border-bottom: 3px solid transparent;
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4caf50;
+            transition: width 0.3s;
         }
         
         nav ul li a:hover {
-            background-color: #388e3c;
-            border-bottom: 3px solid #1b5e20;
-            transform: translateY(-2px);
+            color: #1b5e20;
         }
         
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Container sections */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
         
         .section {
-            background-color: white;
-            margin: 30px 0;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-left: 5px solid #4caf50;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-content {
+            width: 100%;
         }
         
         .section h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 40px;
+            font-weight: 700;
+            letter-spacing: -1px;
             color: #2e7d32;
-            margin-bottom: 25px;
-            font-size: 2em;
-            border-bottom: 3px solid #81c784;
-            padding-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(76, 175, 80, 0.1);
         }
         
         .section h3 {
-            color: #388e3c;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            font-size: 1.5em;
+            color: #2e7d32;
+            font-size: 2rem;
+            margin: 40px 0 20px;
+            font-weight: 600;
         }
         
         /* Perfil del estudiante */
         .perfil-container {
-            display: flex;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 60px;
             align-items: center;
-            gap: 30px;
-            background: linear-gradient(135deg, #f1f8e9 0%, #dcedc8 100%);
-            padding: 30px;
-            border-radius: 10px;
-            border: 2px solid #aed581;
+            padding: 60px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(76, 175, 80, 0.15);
+            border: 2px solid rgba(76, 175, 80, 0.2);
+            transition: all 0.5s ease;
         }
         
-        .perfil-container img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
+        .perfil-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(76, 175, 80, 0.25);
+        }
+        
+        .perfil-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        
+        .perfil-image img {
+            width: 100%;
+            height: 300px;
             object-fit: cover;
-            border: 5px solid #4caf50;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 20px;
+            transition: transform 0.5s ease;
         }
         
-        .perfil-info {
-            flex: 1;
+        .perfil-container:hover .perfil-image img {
+            transform: scale(1.1);
         }
         
         .perfil-info h3 {
-            color: #1b5e20;
-            font-size: 1.8em;
-            margin-bottom: 10px;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #2e7d32;
         }
         
         .perfil-info p {
-            font-size: 1.2em;
-            color: #2e7d32;
-            margin: 8px 0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #558b2f;
+            margin: 12px 0;
         }
         
-        /* Estado del arte con formato específico */
-        .estado-arte {
-            line-height: 1.5;
-            font-size: 12pt;
-        }
-        
-        .estado-arte p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        
-        .highlight {
-            background-color: #fff59d;
-            padding: 2px 5px;
-            font-weight: bold;
+        .perfil-info strong {
             color: #1b5e20;
-            border-radius: 3px;
         }
         
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.1);
+            border: 2px solid rgba(76, 175, 80, 0.2);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(76, 175, 80, 0.25);
+            border-color: #4caf50;
+        }
+        
+        .card h4 {
+            font-size: 1.5rem;
+            color: #2e7d32;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .card p {
+            color: #558b2f;
+            line-height: 1.8;
+        }
+        
+        .card ul {
+            color: #558b2f;
+            line-height: 1.8;
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .card ul li {
+            margin: 12px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .card ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+        
+        /* Ecuaciones interactivas */
         .ecuacion {
-            background-color: #e8f5e9;
+            background: linear-gradient(135deg, rgba(129, 199, 132, 0.15), rgba(165, 214, 167, 0.15));
             border-left: 4px solid #4caf50;
-            padding: 15px 20px;
-            margin: 20px 0;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
             font-family: 'Courier New', monospace;
-            border-radius: 5px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.1);
+        }
+        
+        .ecuacion:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2);
+            background: linear-gradient(135deg, rgba(129, 199, 132, 0.25), rgba(165, 214, 167, 0.25));
         }
         
         .ecuacion strong {
             color: #2e7d32;
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        /* Imágenes */
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+        
+        .img-caption {
+            text-align: center;
+            font-style: italic;
+            color: #558b2f;
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+        
+        /* Text styling */
+        p {
+            line-height: 1.8;
+            color: #2e7d32;
+            margin: 20px 0;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #81c784 0%, #aed581 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #1b5e20;
+        }
+        
+        a {
+            color: #2e7d32;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        a:hover {
+            border-bottom: 2px solid #4caf50;
+            color: #1b5e20;
         }
         
         ul {
@@ -176,259 +415,374 @@
         
         ul li {
             margin: 10px 0;
-            line-height: 1.6;
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            display: block;
-        }
-        
-        .img-caption {
-            text-align: center;
-            font-style: italic;
-            color: #558b2f;
-            margin-top: -10px;
-            margin-bottom: 20px;
-            font-size: 0.95em;
-        }
-        
-        a {
+            line-height: 1.8;
             color: #2e7d32;
-            text-decoration: none;
-            font-weight: 600;
-            border-bottom: 2px solid transparent;
-            transition: border-bottom 0.3s;
         }
         
-        a:hover {
-            border-bottom: 2px solid #4caf50;
-        }
-        
+        /* Footer */
         footer {
-            background-color: #1b5e20;
-            color: white;
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            padding: 80px 20px;
             text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
         }
         
         footer p {
-            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+        
+        footer p:first-child {
+            color: #a5d6a7;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
         
         /* Responsive */
         @media (max-width: 768px) {
             .perfil-container {
-                flex-direction: column;
+                grid-template-columns: 1fr;
                 text-align: center;
+                padding: 40px 20px;
             }
             
             nav ul {
-                flex-direction: column;
+                gap: 20px;
+                padding: 0 20px;
             }
             
-            nav ul li a {
-                border-bottom: 1px solid rgba(255,255,255,0.2);
+            .cards-grid {
+                grid-template-columns: 1fr;
             }
-            
-            .section {
-                padding: 25px;
-            }
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            z-index: 9999;
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 0.1s ease;
+            box-shadow: 0 2px 10px rgba(76, 175, 80, 0.5);
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>NaviExplora</h1>
-        <p>Explora el Jardín Botánico de la UTP con Tecnología NaviLens</p>
-    </header>
+    <!-- Progress Bar -->
+    <div class="progress-bar"></div>
     
-    <nav>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>NaviExplora</h1>
+            <p>Explora el Jardín Botánico de la UTP con Tecnología NaviLens</p>
+            <a href="#perfil" class="cta-button">Comenzar Exploración</a>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </section>
+    
+    <!-- Navigation -->
+    <nav id="mainNav">
         <ul>
-            <li><a href="#perfil">Perfil del Estudiante</a></li>
-            <li><a href="#descripcion">Descripción del Tema</a></li>
+            <li><a href="#perfil">Perfil</a></li>
+            <li><a href="#descripcion">Descripción</a></li>
             <li><a href="#estado-arte">Estado del Arte</a></li>
         </ul>
     </nav>
     
     <div class="container">
-        <!-- SECCIÓN 1: PERFIL DEL ESTUDIANTE -->
+        <!-- Perfil Section -->
         <section id="perfil" class="section">
-            <h2>Perfil del Estudiante</h2>
-            <div class="perfil-container">
-                <img src="https://via.placeholder.com/200?text=Tu+Foto" alt="Foto del estudiante">
-                <div class="perfil-info">
-                    <h3>Santiago Guerra Puertas</h3>
-                    <p><strong>Programa Académico:</strong> Ingeniería de Sistemas y Computación]</p>
-                    <p><strong>Universidad:</strong> Universidad Tecnológica de Pereira</p>
-                    <p><strong>Curso:</strong> Física 1</p>
+            <div class="section-content">
+                <h2>Perfil del Estudiante</h2>
+                <div class="perfil-container">
+                    <div class="perfil-image">
+                        <img src="https://via.placeholder.com/300x300/2e7d32/ffffff?text=Santiago+G." alt="Santiago Guerra Puertas">
+                    </div>
+                    <div class="perfil-info">
+                        <h3>Santiago Guerra Puertas</h3>
+                        <p><strong>Programa Académico:</strong> Ingeniería de Sistemas y Computación</p>
+                        <p><strong>Universidad:</strong> Universidad Tecnológica de Pereira</p>
+                        <p><strong>Curso:</strong> Física 1</p>
+                    </div>
                 </div>
             </div>
         </section>
         
-        <!-- SECCIÓN 2: DESCRIPCIÓN DEL TEMA -->
+        <!-- Descripción Section -->
         <section id="descripcion" class="section">
-            <h2>Descripción del Tema</h2>
-            
-            <h3>Tema General</h3>
-            <p>Implementación de tecnología NaviLens para mejorar la accesibilidad y el recorrido autoguiado en el Jardín Botánico de la Universidad Tecnológica de Pereira (UTP), integrando principios fundamentales de Física 1 en mecánica.</p>
-            
-            <h3>Temas Particulares</h3>
-            
-            <h4 style="color: #2e7d32; margin-top: 20px;">1. Contexto y Justificación</h4>
-            <p>Actualmente, los visitantes del Jardín Botánico de la UTP utilizan un mapa fotográfico para realizar el recorrido. Sin embargo, existe una carencia de señalización numérica clara, lo que complica significativamente la navegación, especialmente para visitantes principiantes. Esta situación se puede mejorar mediante la implementación de tecnología accesible como NaviLens.</p>
-            
-            <h4 style="color: #2e7d32; margin-top: 20px;">2. Objetivo del Proyecto</h4>
-            <p>Realizar una prueba piloto de adecuación de recorrido accesible usando códigos NaviLens. Para más información: <a href="https://www.navilens.com/es/" target="_blank">NaviLens Oficial</a>.</p>
-            <p><strong>Aplicaciones disponibles:</strong></p>
-            <ul>
-                <li><a href="https://play.google.com/store/apps/details?id=com.neosistec.navilensgo&hl=es_ES" target="_blank">NaviLens GO - Google Play</a></li>
-                <li><a href="https://apps.apple.com/co/app/navilens-go/id1313878412" target="_blank">NaviLens GO - App Store</a></li>
-            </ul>
-            
-            <h4 style="color: #2e7d32; margin-top: 20px;">3. Alcance</h4>
-            <p>Proyecto piloto utilizando códigos gratuitos para centros de enseñanza (<a href="https://order.navilens.com/" target="_blank">solicitar códigos</a>) implementados específicamente en el Jardín Botánico de la UTP.</p>
-            
-            <h4 style="color: #2e7d32; margin-top: 20px;">4. Beneficiarios</h4>
-            <ul>
-                <li>Visitantes autoguiados del Jardín Botánico</li>
-                <li>Personas con discapacidad visual</li>
-                <li>Comunidad universitaria de la UTP</li>
-                <li>Público general interesado en botánica</li>
-            </ul>
-            
-            <h4 style="color: #2e7d32; margin-top: 20px;">5. Metodología</h4>
-            <ul>
-                <li>Priorización de puntos relevantes en el recorrido del jardín</li>
-                <li>Elaboración de descripciones detalladas en colaboración con el personal del jardín</li>
-                <li>Evaluación de materiales de impresión y sistemas de fijación</li>
-                <li>Realización de pruebas con visitantes reales</li>
-            </ul>
-            
-            <h4 style="color: #2e7d32; margin-top: 20px;">6. Impacto e Innovación</h4>
-            <p>Este proyecto representa el primer caso de éxito de implementación de tecnología NaviLens en un jardín botánico colombiano ubicado en terreno tipo sendero.</p>
-            
-            <h4 style="color: #2e7d32; margin-top: 20px;">7. Integración con Física 1</h4>
-            <ul>
-                <li><strong>Geometría y vectores:</strong> Manejo de ángulos de detección, vectores direccionales y trigonometría aplicada</li>
-                <li><strong>Mecánica y estática:</strong> Análisis de fuerzas, torques y equilibrio en la instalación de códigos en postes y estructuras</li>
-                <li><strong>Cinemática:</strong> Estudio del movimiento de los usuarios durante la detección de códigos</li>
-            </ul>
+            <div class="section-content">
+                <h2>Descripción del Tema</h2>
+                
+                <p style="font-size: 1.3rem; color: #1b5e20; margin-bottom: 40px; font-weight: 500;">
+                    Implementación de tecnología NaviLens para mejorar la accesibilidad y el recorrido autoguiado en el Jardín Botánico de la Universidad Tecnológica de Pereira (UTP), integrando principios fundamentales de Física 1 en mecánica.
+                </p>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <h4>📍 Contexto</h4>
+                        <p>Los visitantes utilizan un mapa fotográfico para el recorrido, pero existe carencia de señalización numérica clara, complicando la navegación especialmente para visitantes principiantes.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>🎯 Objetivo</h4>
+                        <p>Realizar una prueba piloto de adecuación de recorrido accesible usando códigos NaviLens. Visita <a href="https://www.navilens.com/es/" target="_blank">NaviLens Oficial</a></p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>🌱 Alcance</h4>
+                        <p>Proyecto piloto con códigos gratuitos para centros de enseñanza, implementados en el Jardín Botánico de la UTP.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>👥 Beneficiarios</h4>
+                        <ul>
+                            <li>Visitantes autoguiados</li>
+                            <li>Personas con discapacidad visual</li>
+                            <li>Comunidad universitaria UTP</li>
+                            <li>Público interesado en botánica</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>🔬 Metodología</h4>
+                        <ul>
+                            <li>Priorización de puntos relevantes</li>
+                            <li>Elaboración de descripciones detalladas</li>
+                            <li>Evaluación de materiales</li>
+                            <li>Pruebas con visitantes reales</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>⚡ Física Aplicada</h4>
+                        <ul>
+                            <li>Geometría y vectores</li>
+                            <li>Mecánica y estática</li>
+                            <li>Cinemática del movimiento</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </section>
         
-        <!-- SECCIÓN 3: ESTADO DEL ARTE -->
-        <section id="estado-arte" class="section estado-arte">
-            <h2>Estado del Arte del Tema</h2>
-            
-            <p><strong>Recopilación inicial de consultas:</strong> Se realizaron consultas en el sitio oficial de NaviLens (navilens.com), aplicaciones disponibles en tiendas digitales, sitio de pedidos de códigos, y diversos casos de estudio documentados en Instagram y sitios educativos. Las fuentes adicionales incluyen artículos científicos especializados sobre localización visual y accesibilidad, como publicaciones en PMC (PubMed Central) sobre algoritmos ligeros para visión artificial.</p>
-            
-            <h3>Subtema 1: Tecnología NaviLens</h3>
-            
-            <p>NaviLens constituye una señalética visual disruptiva que emplea marcadores de alto alcance especialmente diseñados para personas con discapacidad visual. Esta tecnología permite la detección rápida sin necesidad de enfoque preciso, funcionando a gran <span class="highlight">distancia</span> (hasta 15 metros para códigos de 26 cm de tamaño), en movimiento continuo, y con capacidad de lectura múltiple simultánea. El sistema proporciona información auditiva en 34 idiomas diferentes, corrigiendo automáticamente las distorsiones causadas por la perspectiva del observador.</p>
-            
-            <p>El funcionamiento se basa en la detección de patrones visuales únicos que pueden ser identificados por una cámara de smartphone desde grandes distancias y ángulos amplios. La tecnología utiliza algoritmos de visión por computadora que permiten el reconocimiento instantáneo incluso cuando el código no está centrado en el campo de visión.</p>
-            
-            <div class="ecuacion">
-                <strong>Ecuación de distancia de detección:</strong><br>
-                d = (f × H) / h<br><br>
-                Donde:<br>
-                • d = <span class="highlight">distancia</span> al código<br>
-                • f = distancia focal de la cámara<br>
-                • H = altura real del código<br>
-                • h = altura aparente del código en el sensor
+        <!-- Estado del Arte Section -->
+        <section id="estado-arte" class="section">
+            <div class="section-content">
+                <h2>Estado del Arte</h2>
+                
+                <h3>Tecnología NaviLens</h3>
+                <p>NaviLens constituye una señalética visual disruptiva que emplea marcadores de alto alcance especialmente diseñados para personas con discapacidad visual. Esta tecnología permite la detección rápida sin necesidad de enfoque preciso, funcionando a gran <span class="highlight">distancia</span> (hasta 15 metros para códigos de 26 cm de tamaño).</p>
+                
+                <div class="ecuacion">
+                    <strong>Ecuación de distancia de detección:</strong>
+                    d = (f × H) / h<br><br>
+                    Donde:<br>
+                    • d = <span class="highlight">distancia</span> al código<br>
+                    • f = distancia focal de la cámara<br>
+                    • H = altura real del código<br>
+                    • h = altura aparente del código en el sensor
+                </div>
+                
+                <div class="image-container">
+                    <img src="https://npr.brightspotcdn.com/b2/73/8492e0cc4efc976218897aca96f9/navilens-at-the-butterfly-garden.jpg" alt="NaviLens en jardín">
+                    <p class="img-caption">Ejemplo de código NaviLens instalado en un jardín botánico</p>
+                </div>
+                
+                <h3>Principios Físicos Involucrados</h3>
+                <p>La tecnología de detección NaviLens cubre un <span class="highlight">ángulo</span> de hasta 160 grados, utilizando principios trigonométricos para modelar la orientación espacial.</p>
+                
+                <div class="ecuacion">
+                    <strong>Cálculo del ángulo de detección:</strong>
+                    cos(θ) = componente adyacente / hipotenusa<br>
+                    tan(θ) = componente opuesta / componente adyacente<br><br>
+                    Para vectores:<br>
+                    θ = arctan(y/x)
+                </div>
+                
+                <div class="ecuacion">
+                    <strong>Ecuación de velocidad:</strong>
+                    v = Δd / Δt<br><br>
+                    Donde:<br>
+                    • v = <span class="highlight">velocidad</span> de desplazamiento (m/s)<br>
+                    • Δd = <span class="highlight">distancia</span> recorrida (m)<br>
+                    • Δt = intervalo de tiempo (s)
+                </div>
+                
+                <div class="ecuacion">
+                    <strong>Ecuación de torque:</strong>
+                    τ = F × r × sen(α)<br><br>
+                    Condiciones de equilibrio estático:<br>
+                    ΣF = 0 (suma de fuerzas igual a cero)<br>
+                    Στ = 0 (suma de torques igual a cero)
+                </div>
+                
+                <div class="image-container">
+                    <img src="https://www.researchgate.net/publication/337974895/figure/fig4/AS:837077470031873@1576586229834/Direction-calculation-during-marker-interconnection.png" alt="Diagrama vectorial">
+                    <p class="img-caption">Diagrama de cálculo de dirección y ángulos en el sistema NaviLens</p>
+                </div>
+                
+                <h3>Casos de Estudio</h3>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <h4>🇪🇸 España - Águilas</h4>
+                        <p>Jardín Botánico en miniatura en la Plaza de España de Águilas (Murcia). Demostró la viabilidad en entornos exteriores con vegetación densa.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>🇪🇸 España - Orihuela</h4>
+                        <p>Paseo Botánico de la Escuela Politécnica Superior de Orihuela (Alicante). Implementación completa en senderos para navegación inclusiva.</p>
+                    </div>
+                </div>
+                
+                <div class="image-container">
+                    <img src="https://www.navilens.com/images/places/navilens-ar-virtual-arrows-min.jpg" alt="Realidad aumentada">
+                    <p class="img-caption">Sistema de navegación con realidad aumentada en NaviLens</p>
+                </div>
+                
+                <p>Los estudios técnicos realizados en estas implementaciones han permitido optimizar parámetros como la altura de instalación de los códigos, el <span class="highlight">ángulo</span> de inclinación óptimo respecto al suelo, y la <span class="highlight">distancia</span> ideal entre marcadores consecutivos en un recorrido lineal tipo sendero.</p>
             </div>
-            
-            <p>Esta relación geométrica permite estimar la <span class="highlight">distancia</span> basada en el tamaño aparente del código en la imagen capturada por la cámara.</p>
-            
-            <img src="https://npr.brightspotcdn.com/b2/73/8492e0cc4efc976218897aca96f9/navilens-at-the-butterfly-garden.jpg" alt="Implementación de NaviLens en jardín botánico">
-            <p class="img-caption">Figura 1: Ejemplo de código NaviLens instalado en un jardín botánico</p>
-            
-            <h3>Subtema 2: Principios Físicos Involucrados</h3>
-            
-            <p>La tecnología de detección NaviLens cubre un <span class="highlight">ángulo</span> de hasta 160 grados, utilizando principios trigonométricos para modelar la orientación espacial. El <span class="highlight">ángulo</span> de detección θ se calcula mediante la descomposición de vectores en coordenadas bidimensionales y tridimensionales, ajustando las proyecciones con funciones trigonométricas para las componentes horizontales y verticales.</p>
-            
-            <div class="ecuacion">
-                <strong>Cálculo del ángulo de detección:</strong><br>
-                cos(θ) = componente adyacente / hipotenusa<br>
-                tan(θ) = componente opuesta / componente adyacente<br><br>
-                Para vectores:<br>
-                θ = arctan(y/x)
-            </div>
-            
-            <p>Durante el movimiento del usuario, se aplican principios de cinemática. La <span class="highlight">velocidad</span> constante se calcula como v = d / t, donde d representa el <span class="highlight">desplazamiento</span> y t el tiempo transcurrido. Esta medición permite determinar los tiempos de detección mientras el usuario camina por el sendero del jardín.</p>
-            
-            <div class="ecuacion">
-                <strong>Ecuación de velocidad:</strong><br>
-                v = Δd / Δt<br><br>
-                Donde:<br>
-                • v = <span class="highlight">velocidad</span> de desplazamiento (m/s)<br>
-                • Δd = <span class="highlight">distancia</span> recorrida (m)<br>
-                • Δt = intervalo de tiempo (s)
-            </div>
-            
-            <p>Para la instalación de los códigos en el jardín botánico, se emplean principios de estática. El análisis de <span class="highlight">torque</span> (momento de fuerza) es fundamental para garantizar la estabilidad de las estructuras que soportan los códigos, especialmente considerando factores externos como el viento.</p>
-            
-            <div class="ecuacion">
-                <strong>Ecuación de torque:</strong><br>
-                τ = F × r × sen(α)<br><br>
-                Condiciones de equilibrio estático:<br>
-                ΣF = 0 (suma de fuerzas igual a cero)<br>
-                Στ = 0 (suma de torques igual a cero)<br><br>
-                Donde:<br>
-                • τ = <span class="highlight">torque</span> o momento de fuerza (N·m)<br>
-                • F = <span class="highlight">fuerza</span> aplicada (N)<br>
-                • r = <span class="highlight">distancia</span> al punto de rotación (m)<br>
-                • α = <span class="highlight">ángulo</span> entre la fuerza y el brazo de palanca
-            </div>
-            
-            <p>En el análisis de mecánica para la instalación en senderos irregulares, se evalúan la <span class="highlight">fricción</span> estática y el <span class="highlight">peso</span> de las estructuras. La <span class="highlight">fuerza</span> de fricción estática debe ser suficiente para prevenir el deslizamiento de los postes de soporte, especialmente en terrenos con pendiente.</p>
-            
-            <div class="ecuacion">
-                <strong>Fuerza de fricción estática:</strong><br>
-                f<sub>s</sub> ≤ μ<sub>s</sub> × N<br><br>
-                <strong>Peso:</strong><br>
-                W = m × g<br><br>
-                Donde:<br>
-                • f<sub>s</sub> = <span class="highlight">fuerza</span> de fricción estática (N)<br>
-                • μ<sub>s</sub> = coeficiente de fricción estática<br>
-                • N = <span class="highlight">fuerza</span> normal (N)<br>
-                • W = <span class="highlight">peso</span> (N)<br>
-                • m = masa (kg)<br>
-                • g = <span class="highlight">aceleración</span> gravitacional (9.8 m/s²)
-            </div>
-            
-            <img src="https://www.researchgate.net/publication/337974895/figure/fig4/AS:837077470031873@1576586229834/Direction-calculation-during-marker-interconnection.png" alt="Diagrama de cálculo vectorial">
-            <p class="img-caption">Figura 2: Diagrama de cálculo de dirección y ángulos en el sistema NaviLens</p>
-            
-            <h3>Subtema 3: Casos de Estudio y Aplicaciones Similares</h3>
-            
-            <p>En España, el Jardín Botánico en miniatura ubicado en la Plaza de España de Águilas (Murcia) implementó exitosamente la tecnología NaviLens para mejorar la accesibilidad en espacios verdes urbanos. Este proyecto demostró la viabilidad de la tecnología en entornos exteriores con vegetación densa.</p>
-            
-            <p>Otro caso relevante es el Paseo Botánico de la Escuela Politécnica Superior de Orihuela (Alicante), donde se realizó una implementación completa en senderos para navegación inclusiva. Estos casos de estudio destacan especialmente la efectividad de la detección en entornos exteriores, aprovechando las capacidades de gran <span class="highlight">distancia</span> de lectura y amplio <span class="highlight">ángulo</span> de detección de la tecnología NaviLens.</p>
-            
-            <p>Los resultados de estas implementaciones muestran que la tecnología es particularmente efectiva en jardines botánicos debido a:</p>
-            <ul>
-                <li>La necesidad de información detallada sobre especies vegetales</li>
-                <li>La importancia de la accesibilidad para visitantes con discapacidad visual</li>
-                <li>Los recorridos extensos donde la <span class="highlight">distancia</span> entre puntos de interés puede ser considerable</li>
-                <li>Los senderos con curvas y cambios de dirección que requieren orientación espacial precisa</li>
-            </ul>
-            
-            <img src="https://www.navilens.com/images/places/navilens-ar-virtual-arrows-min.jpg" alt="Sistema de navegación con realidad aumentada">
-            <p class="img-caption">Figura 3: Ejemplo de detección angular y sistema de navegación mediante realidad aumentada en NaviLens</p>
-            
-            <p>Los estudios técnicos realizados en estas implementaciones han permitido optimizar parámetros como la altura de instalación de los códigos, el <span class="highlight">ángulo</span> de inclinación óptimo respecto al suelo, y la <span class="highlight">distancia</span> ideal entre marcadores consecutivos en un recorrido lineal tipo sendero.</p>
         </section>
     </div>
     
     <footer>
-        <p>Proyecto de Física 1 | Universidad Tecnológica de Pereira</p>
+        <p>Proyecto de Física 1</p>
+        <p>Universidad Tecnológica de Pereira</p>
         <p>Fecha de entrega: Octubre 25, 2025</p>
     </footer>
+    
+    <script>
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height);
+            document.querySelector('.progress-bar').style.transform = `scaleX(${scrolled})`;
+        });
+        
+        // Navigation visibility on scroll
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > window.innerHeight - 100) {
+                nav.classList.add('visible');
+            } else {
+                nav.classList.remove('visible');
+            }
+        });
+        
+        // Intersection Observer for sections
+        const sections = document.querySelectorAll('.section');
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        sections.forEach(section => observer.observe(section));
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(() => {
+                        target.classList.add('visible');
+                    }, 300); // Small delay after scroll
+                }
+            });
+        });
+        
+        // Parallax effect on hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const hero = document.querySelector('.hero-content');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.opacity = 1 - (scrolled / window.innerHeight);
+            }
+        });
+        
+        // Card hover effect with tilt
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+            });
+        });
+        
+        // Animate equations on hover
+        const ecuaciones = document.querySelectorAll('.ecuacion');
+        ecuaciones.forEach(eq => {
+            eq.addEventListener('mouseenter', () => {
+                eq.style.background = 'linear-gradient(135deg, rgba(129, 199, 132, 0.25), rgba(165, 214, 167, 0.25))';
+            });
+            eq.addEventListener('mouseleave', () => {
+                eq.style.background = 'linear-gradient(135deg, rgba(129, 199, 132, 0.15), rgba(165, 214, 167, 0.15))';
+            });
+        });
+
+        // Manual visibility check on page load and hash change for direct navigation
+        function makeSectionVisible() {
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    section.classList.add('visible');
+                }
+            });
+            if (location.hash) {
+                const target = document.querySelector(location.hash);
+                if (target) {
+                    target.classList.add('visible');
+                }
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            makeSectionVisible();
+            setTimeout(makeSectionVisible, 100); // Extra check after a short delay
+        });
+
+        window.addEventListener('load', makeSectionVisible);
+
+        window.addEventListener('hashchange', makeSectionVisible);
+    </script>
 </body>
 </html>
