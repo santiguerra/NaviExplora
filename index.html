@@ -475,6 +475,57 @@
             transition: transform 0.1s ease;
             box-shadow: 0 2px 10px rgba(76, 175, 80, 0.5);
         }
+
+        /* Collage de fotos */
+        .collage {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 40px 0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .collage img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .collage img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.4);
+        }
+
+        /* Video container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin: 40px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+        }
+
+        .video-caption {
+            text-align: center;
+            font-style: italic;
+            color: #558b2f;
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
     </style>
 </head>
 <body>
@@ -498,6 +549,7 @@
             <li><a href="#perfil">Perfil</a></li>
             <li><a href="#descripcion">Descripción</a></li>
             <li><a href="#estado-arte">Estado del Arte</a></li>
+            <li><a href="#bitacora">Bitácora</a></li>
         </ul>
     </nav>
     
@@ -507,7 +559,7 @@
                 <h2>Perfil del Estudiante</h2>
                 <div class="perfil-container">
                     <div class="perfil-image">
-                        <img src="Asets/08965B71-EC95-4566-A6B9-06545174E175.JPG" alt="Santiago Guerra Puertas">
+                        <img src="Asests/FotoMIa/F1EB03D9-BEF4-4C91-8502-30623C4D3AC8_1_105_c.jpeg" alt="Santiago Guerra Puertas">
                     </div>
                     <div class="perfil-info">
                         <h3>Santiago Guerra Puertas</h3>
@@ -652,6 +704,202 @@
                 <p>Los estudios técnicos realizados en estas implementaciones han permitido optimizar parámetros como la altura de instalación de los códigos, el <span class="highlight">ángulo</span> de inclinación óptimo respecto al suelo, y la <span class="highlight">distancia</span> ideal entre marcadores consecutivos en un recorrido lineal tipo sendero.</p>
             </div>
         </section>
+
+        <section id="bitacora" class="section">
+            <div class="section-content">
+                <h2>Bitácora del Proyecto</h2>
+                <h3>Implementación de Tecnología Navilens en el Jardín Botánico de la Universidad</h3>
+                <p><strong>Fecha de inicio del proyecto:</strong> 9/10/2025</p>
+                <p><strong>Objetivo general:</strong> Desarrollar e implementar un sistema de códigos QR basados en tecnología Navilens para mejorar la accesibilidad y la experiencia informativa en el Jardín Botánico de la universidad, permitiendo a usuarios, incluyendo personas con discapacidad visual, obtener información detallada sobre plantas y áreas mediante escaneo de códigos.</p>
+                
+                <h3>Etapa de Planeación</h3>
+                <p>En esta fase inicial, nos enfocamos en definir el alcance del proyecto, los objetivos específicos y los recursos necesarios. Comenzamos elaborando un documento detallado en Microsoft Word que incluía el planteamiento del problema (falta de accesibilidad en el Jardín Botánico), los beneficios de la tecnología Navilens (códigos QR accesibles que funcionan sin necesidad de enfoque preciso), el cronograma preliminar y un presupuesto estimado para materiales como impresiones y adhesivos.</p>
+                <p>Por solicitud, transferimos toda la información a una página web utilizando herramientas de HTML, CSS y JAVA SCRIPT.</p>
+                <p><strong>Actividades clave:</strong></p>
+                <ul>
+                    <li>Investigación preliminar sobre Navilens: Revisamos documentación oficial y ejemplos de implementación en espacios públicos.</li>
+                    <li>Definición de metas: Colocar al menos 10 códigos QR en puntos estratégicos del Jardín.</li>
+                </ul>
+                <p><strong>Desafíos:</strong> Ajustar el plan inicial debido a limitaciones Económicas y de tiempo.</p>
+                <p><strong>Resultados:</strong> página web completos, listos para revisión.</p>
+                <p><strong>Duración:</strong> Aproximadamente 1 semana.</p>
+                <p><strong>Fecha de finalización:</strong> 17/10/2025.</p>
+                
+                <h3>Etapa de Recolección (Reconocimiento y Selección de Ubicaciones)</h3>
+                <p>Esta etapa consistió en una ida de reconocimiento al Jardín Botánico para recopilar datos sobre posibles ubicaciones para los códigos QR. El objetivo era identificar puntos de interés como entradas, senderos, plantas emblemáticas y áreas de descanso, evaluando factores como visibilidad, accesibilidad y exposición a elementos climáticos.</p>
+                <p>Realizamos un recorrido por el Jardín, tomando notas y fotografías de cada sección. Consideramos aspectos como la distancia entre códigos para evitar sobrecarga y la integración estética para no alterar el entorno natural.</p>
+                <p><strong>Actividades clave:</strong></p>
+                <ul>
+                    <li>Inspección in situ: Visita de 4 horas al Jardín Botánico, identificando puntos potenciales.</li>
+                    <li>Recolección de datos: Notas sobre tipos de plantas, flujo de visitantes y posibles soportes para los QR (postes, bancos, carteles existentes).</li>
+                </ul>
+                <p><strong>Desafíos:</strong> Clima variable que podría afectar la durabilidad de los materiales, necesidad de permisos de la administración del Jardín.</p>
+                <p><strong>Resultados:</strong> Mapa detallado con ubicaciones seleccionadas y lista de requerimientos (tamaños de QR)</p>
+                <p><strong>Duración:</strong> 2 semanas.</p>
+                <p><strong>Fecha de finalización:</strong> 31/10/2025.</p>
+                
+                <div class="collage">
+                    <img src="Asests/FotosLugares/049CA5A9-D432-4C7E-AB20-896C38D7192A_1_105_c.jpeg" alt="Ubicación 1 Jardín Botánico">
+                    <img src="Asests/FotosLugares/106B10E2-4B38-4010-8542-893B44B17311_1_105_c.jpeg" alt="Ubicación 2 Jardín Botánico">
+                    <img src="Asests/FotosLugares/19D06817-6999-4C2C-B337-96697BE7F15D_1_105_c.jpeg" alt="Ubicación 3 Jardín Botánico">
+                    <img src="Asests/FotosLugares/1BE36652-18C3-458E-8A56-B50A91620595_1_105_c.jpeg" alt="Ubicación 4 Jardín Botánico">
+                    <img src="Asests/FotosLugares/25E032D8-9D42-4CCF-81E8-CA7C5442E0F9_1_105_c.jpeg" alt="Ubicación 5 Jardín Botánico">
+                    <img src="Asests/FotosLugares/898DE8D7-5C6D-4AD8-98CE-A065E2E875B8_1_105_c.jpeg" alt="Ubicación 6 Jardín Botánico">
+                    <img src="Asests/FotosLugares/96A45E70-740F-4947-905C-D7E6820AAF17_1_105_c.jpeg" alt="Ubicación 7 Jardín Botánico">
+                    <img src="Asests/FotosLugares/99C2C837-4A00-4E11-A229-6A8340578AA9_1_105_c.jpeg" alt="Ubicación 8 Jardín Botánico">
+                    <img src="Asests/FotosLugares/D98AE028-239C-450B-B4FF-C394F1E4EB42_1_105_c.jpeg" alt="Ubicación 9 Jardín Botánico">
+                    <img src="Asests/FotosLugares/EA22CE6F-9281-4D36-9CA0-F0AF224520D1_1_105_c.jpeg" alt="Ubicación 10 Jardín Botánico">
+                </div>
+                <p class="img-caption">Collage de ubicaciones seleccionadas en el Jardín Botánico para la implementación de códigos NaviLens</p>
+                
+                <h3>Etapa de Pruebas Pilotos</h3>
+                <p>Aquí nos familiarizamos con la tecnología Navilens mediante experimentos controlados. Comenzamos en un entorno interno (el galpón de la universidad) para probar la generación y escaneo de códigos QR Navilens</p>
+                <p>Posteriormente, trasladamos las pruebas al Jardín Botánico para simular condiciones reales, evaluando factores como iluminación natural, distancias de escaneo y compatibilidad con diferentes dispositivos. Generamos códigos prototipo que enlazaban a contenidos de prueba (Enlace a la pagina del proyecto).</p>
+                <p><strong>Actividades clave:</strong></p>
+                <ul>
+                    <li>Experimentos en galpón: Creación de 3 códigos QR de prueba; pruebas de escaneo en condiciones controladas (distancia, ángulo, velocidad).</li>
+                    <li>Pruebas en campo: Implementación temporal en 5 puntos del Jardín; medición de tiempos de respuesta y precisión.</li>
+                </ul>
+                <p><strong>Desafíos:</strong> Interferencias por reflejos solares en el escaneo; necesidad de ajustar tamaños de códigos.</p>
+                <p><strong>Resultados:</strong> Confirmación de que Navilens funciona bien en exteriores; identificación de mejoras como nuevo material de impresión</p>
+                <p><strong>Duración:</strong> 1 semana.</p>
+                <p><strong>Fecha de finalización:</strong> 07/11/2025.</p>
+                <p>Como parte del proyecto de Física 1, se aplicaron los siguientes conceptos y ecuaciones para analizar la implementación de los códigos QR Navilens, incluyendo cálculos con datos realistas y errores estimados basados en mediciones experimentales.</p>
+                
+                <div class="video-container">
+                    <video controls>
+                        <source src="Asests/Videos/IMG_2796.MOV" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                </div>
+                <p class="video-caption">Video de pruebas en el Jardín Botánico - Escaneo de códigos NaviLens en condiciones reales</p>
+                
+                <div class="ecuacion">
+                    <strong>Ecuación de Distancia de Detección</strong>
+                    Usada para calcular la distancia óptima de escaneo de los códigos QR con la cámara del dispositivo.<br>
+                    Fórmula: d = (f × H) / h<br><br>
+                    Donde:<br>
+                    • d: Distancia al código (m)<br>
+                    • f: Distancia focal de la cámara (mm)<br>
+                    • H: Altura real del código (m)<br>
+                    • h: Altura aparente del código en el sensor (mm)<br><br>
+                    <strong>Aplicación en Etapa de Pruebas Pilotos:</strong><br>
+                    - Datos: f = 4 mm, H = 0.10 m ± 0.01 m, h = 0.50 mm ± 0.05 mm<br>
+                    - Resultado: d = 0.80 m ± 0.10 m
+                </div>
+                
+                <div class="ecuacion">
+                    <strong>Cálculo del Ángulo de Detección</strong>
+                    Usado para evaluar el ángulo desde el cual se puede detectar el código QR, considerando la posición relativa.<br>
+                    Fórmulas:<br>
+                    cos(θ) = componente adyacente / hipotenusa<br>
+                    tan(θ) = componente opuesta / componente adyacente<br>
+                    Para vectores: θ = arctan(y/x)<br><br>
+                    <strong>Aplicación en Etapa de Pruebas Pilotos:</strong><br>
+                    - Datos: Componentes x = 0.60 m ± 0.05 m, y = 0.30 m ± 0.03 m<br>
+                    - Resultado: θ ≈ 26.6° ± 2°
+                </div>
+                
+                <div class="ecuacion">
+                    <strong>Ecuación de Velocidad</strong>
+                    Usada para medir la velocidad de desplazamiento de usuarios durante el escaneo, simulando movimiento en el jardín.<br>
+                    Fórmula: v = Δd / Δt<br><br>
+                    Donde:<br>
+                    • v: Velocidad de desplazamiento (m/s)<br>
+                    • Δd: Distancia recorrida (m)<br>
+                    • Δt: Intervalo de tiempo (s)<br><br>
+                    <strong>Aplicación en Etapa de Pruebas Pilotos:</strong><br>
+                    - Datos: Δd = 5.0 m ± 0.2 m, Δt = 10 s ± 1 s<br>
+                    - Resultado: v = 0.50 m/s ± 0.07 m/s
+                </div>
+                
+                <h3>Etapa de Implementación</h3>
+                <p>En esta fase, procedimos a la producción y colocación física de los códigos QR. Investigamos materiales duraderos y resistentes al agua y al sol, optando por papel glossy laminado para mayor protección contra el clima. Imprimimos los códigos en una imprenta local, asegurándonos de que cada uno enlazara a contenidos específicos (información botánica, historia del Jardín, etc.) Por medio de un sistema de información enlazado con los Qr</p>
+                <p>Luego, pegamos los QR en las ubicaciones seleccionadas utilizando adhesivos resistentes (cinta doble cara industrial).</p>
+                <p><strong>Actividades clave:</strong></p>
+                <ul>
+                    <li>Impresión: Producción de 15 códigos en papel glossy de alta calidad.</li>
+                    <li>Colocación: Sesión de instalación en el Jardín, verificando alineación y estabilidad.</li>
+                    <li>Integración digital: Enlazado de códigos con sus informaciones correspondientes</li>
+                </ul>
+                <p><strong>Desafíos:</strong> Coordinación con el personal del Jardín para conseguir permiso de pegarlos; costos de impresión ligeramente superiores a lo presupuestado.</p>
+                <p><strong>Resultados:</strong> Todos los QR colocados exitosamente, cubriendo el 100% de las áreas planeadas.</p>
+                <p><strong>Duración:</strong> 1 semana.</p>
+                <p><strong>Fecha de finalización:</strong> 13/11/2025.</p>
+                
+                <div class="video-container">
+                    <video controls>
+                        <source src="Asests/Videos/WhatsApp Video 2025-11-20 at 22.51.31.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                </div>
+                <p class="video-caption">Video de implementación final - Instalación de códigos NaviLens en el Jardín Botánico</p>
+                
+                <div class="ecuacion">
+                    <strong>Ecuación de Torque</strong>
+                    Usada para analizar la estabilidad de los soportes de los códigos QR bajo fuerzas externas como el viento.<br>
+                    Fórmula: τ = F × r × sin(α)<br><br>
+                    Donde:<br>
+                    • τ: Torque (Nm)<br>
+                    • F: Fuerza aplicada (N)<br>
+                    • r: Distancia al eje de rotación (m)<br>
+                    • α: Ángulo entre fuerza y radio<br><br>
+                    <strong>Aplicación en Etapa de Implementación:</strong><br>
+                    - Datos: F = 2 N ± 0.5 N, r = 0.05 m ± 0.01 m, α = 90° (sin(90°) = 1)<br>
+                    - Resultado: τ ≈ 0.10 Nm ± 0.03 Nm
+                </div>
+                
+                <h3>Etapa de Probación (Verificación y Pruebas Finales)</h3>
+                <p>Finalmente, realizamos pruebas exhaustivas para validar la implementación completa. Esto incluyó recorridos simulados por el Jardín escaneando cada código, verificando la precisión de la información entregada y la funcionalidad en diferentes condiciones (día, tanto soleado como con lluvia (simulado).</p>
+                <p><strong>Actividades clave:</strong></p>
+                <ul>
+                    <li>Pruebas integrales: Escaneo de todos los QR; medición de tasas de éxito (>95% esperada).</li>
+                    <li>Documentación final: Actualización de la página web con reportes de pruebas y métricas.</li>
+                </ul>
+                <p><strong>Desafíos:</strong> Algunos códigos afectados por exposición inicial al clima, pues donde estaban forrados se empañaron por las fuertes lluvias de la noche.</p>
+                <p><strong>Resultados:</strong> Sistema operativo al 100%, con correcciones aplicadas.</p>
+                <p><strong>Duración:</strong> 10 días.</p>
+                <p><strong>Fecha de finalización:</strong> 17/11/2025.</p>
+                
+                <div class="ecuacion">
+                    <strong>Ecuación de Distancia de Detección</strong>
+                    <strong>Aplicación en Etapa de Probación:</strong><br>
+                    - Datos: f = 4 mm, H = 0.15 m ± 0.01 m, h = 0.50 mm ± 0.05 mm<br>
+                    - Resultado: d = 1.20 m ± 0.15 m
+                </div>
+                
+                <div class="ecuacion">
+                    <strong>Cálculo del Ángulo de Detección</strong>
+                    <strong>Aplicación en Etapa de Probación:</strong><br>
+                    - Datos: Componentes y = 0.40 m ± 0.04 m, x = 0.70 m ± 0.05 m<br>
+                    - Resultado: θ ≈ 30° ± 3°
+                </div>
+                
+                <div class="ecuacion">
+                    <strong>Ecuación de Velocidad</strong>
+                    <strong>Aplicación en Etapa de Probación:</strong><br>
+                    - Datos: Δd = 10 m ± 0.5 m, Δt = 10 s ± 1 s<br>
+                    - Resultado: v = 1.0 m/s ± 0.1 m/s
+                </div>
+                
+                <div class="ecuacion">
+                    <strong>Ecuación de Torque</strong>
+                    <strong>Aplicación en Etapa de Probación (condiciones húmedas):</strong><br>
+                    - Datos: F = 3 N ± 0.5 N, r = 0.05 m ± 0.01 m, α = 60° (sin(60°) = 0.866)<br>
+                    - Resultado: τ ≈ 0.13 Nm ± 0.04 Nm
+                </div>
+                
+                <h3>Condiciones de Equilibrio Estático</h3>
+                <p>Usadas para verificar la estabilidad de los códigos QR colocados, asegurando que no se muevan o caigan.</p>
+                <p>Fórmulas:</p>
+                <ul>
+                    <li>ΣF = 0 (suma de fuerzas igual a cero)</li>
+                    <li>Στ = 0 (suma de torques igual a cero)</li>
+                </ul>
+                <p><strong>Aplicación general:</strong></p>
+                <p>En etapas de Implementación y Probación, se verificó ΣF = 0 y Στ = 0 para soportes, considerando fuerzas como gravedad, adhesión y viento. Los cálculos de torque se usaron para confirmar que el sistema permanecía en equilibrio, con errores propagados para estimar incertidumbre.</p>
+            </div>
+        </section>
     </div>
     
     <footer>
@@ -682,8 +930,8 @@
         // Intersection Observer for sections
         const sections = document.querySelectorAll('.section');
         const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -100px 0px'
+            threshold: 0.1,
+            rootMargin: '0px 0px 0px 0px'
         };
         
         const observer = new IntersectionObserver((entries) => {
@@ -703,9 +951,8 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    setTimeout(() => {
-                        target.classList.add('visible');
-                    }, 300); // Small delay after scroll
+                    // Immediately add visible class and ensure it stays visible
+                    target.classList.add('visible');
                 }
             });
         });
@@ -757,13 +1004,13 @@
         function makeSectionVisible() {
             sections.forEach(section => {
                 const rect = section.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
                     section.classList.add('visible');
                 }
             });
             if (location.hash) {
                 const target = document.querySelector(location.hash);
-                if (target) {
+                if (target && target.classList.contains('section')) {
                     target.classList.add('visible');
                 }
             }
@@ -777,6 +1024,11 @@
         window.addEventListener('load', makeSectionVisible);
 
         window.addEventListener('hashchange', makeSectionVisible);
+        
+        // También verificar visibilidad al hacer scroll
+        window.addEventListener('scroll', () => {
+            makeSectionVisible();
+        }, { passive: true });
     </script>
 </body>
 </html>
